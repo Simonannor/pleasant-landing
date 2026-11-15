@@ -1,4 +1,5 @@
 import { ArrowUpRight, CalendarPlus, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { church, services } from "@/lib/church";
 
@@ -39,9 +40,9 @@ export default function ServicesSection() {
         </div>
         <div className="services-cta reveal" data-delay="120">
           <Button variant="chapel" asChild>
-            <a href="#visit">
+            <Link to="/visit">
               Plan your visit <ArrowUpRight />
-            </a>
+            </Link>
           </Button>
         </div>
       </div>

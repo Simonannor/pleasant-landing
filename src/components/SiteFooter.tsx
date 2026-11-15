@@ -1,4 +1,5 @@
 import { ArrowUpRight, Clock3, Facebook, Instagram, MapPin, Youtube } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { church, navLinks, services } from "@/lib/church";
 import shield from "@/assets/chapel-shield.png";
 
@@ -33,13 +34,13 @@ export default function SiteFooter() {
           <div className="footer-col">
             <div className="footer-heading">Explore</div>
             {navLinks.map((l) => (
-              <a key={l.href} className="footer-link" href={l.href}>
+              <Link key={l.href} className="footer-link" to={l.href}>
                 {l.label}
-              </a>
+              </Link>
             ))}
-            <a className="footer-link" href="#visit">
+            <Link className="footer-link" to="/visit">
               Plan your visit
-            </a>
+            </Link>
           </div>
           <div className="footer-col">
             <div className="footer-heading">Gather with us</div>

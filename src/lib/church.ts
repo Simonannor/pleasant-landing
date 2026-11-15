@@ -70,9 +70,9 @@ export const leaders: Leader[] = [
 ];
 
 export const navLinks = [
-  { label: "Our Story", href: "#our-story" },
-  { label: "Services", href: "#services" },
-  { label: "Leadership", href: "#leadership" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "School of Ministry", href: "#ministry" },
+  { label: "Our Story", href: "/our-story" },
+  { label: "Services", href: "/services" },
+  { label: "Leadership", href: "/leadership" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "School of Ministry", href: "/ministry" },
 ];

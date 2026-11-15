@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { church, navLinks } from "@/lib/church";
 import shield from "@/assets/chapel-shield.png";
@@ -32,7 +33,7 @@ export default function SiteNav() {
   return (
     <header className={`nav-shell${scrolled ? " is-scrolled" : ""}`}>
       <div className="container nav-inner">
-        <a href="#home" className="nav-brand" aria-label={`${church.name} home`}>
+        <Link to="/" className="nav-brand" aria-label={`${church.name} home`}>
           <img
             className="nav-shield"
             src={shield}
@@ -52,17 +53,17 @@ export default function SiteNav() {
             <br />
             Chapel<small>Faith · Family · Purpose</small>
           </span>
-        </a>
+        </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navLinks.map((l) => (
-            <a key={l.href} className="nav-link" href={l.href}>
+            <Link key={l.href} className="nav-link" to={l.href}>
               {l.label}
-            </a>
+            </Link>
           ))}
           <Button variant="chapel" asChild className="nav-cta">
-            <a href="#visit">
+            <Link to="/visit">
               Plan your visit <ArrowUpRight />
-            </a>
+            </Link>
           </Button>
         </nav>
         <Button
@@ -85,15 +86,15 @@ export default function SiteNav() {
               <span>{church.name}</span>
             </div>
             {navLinks.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+              <Link key={l.href} to={l.href} onClick={() => setOpen(false)}>
                 {l.label}
                 <ArrowUpRight size={15} />
-              </a>
+              </Link>
             ))}
             <Button variant="chapel" asChild className="nav-drawer-cta">
-              <a href="#visit" onClick={() => setOpen(false)}>
+              <Link to="/visit" onClick={() => setOpen(false)}>
                 Plan your visit <ArrowUpRight />
-              </a>
+              </Link>
             </Button>
           </nav>
         </div>

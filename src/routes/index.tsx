@@ -1,28 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import {
-  ArrowUpRight,
-  Play,
-  MapPin,
-  Clock3,
-  Heart,
-  Cross,
-  Users,
-  X,
-  GraduationCap,
-} from "lucide-react";
+import { ArrowUpRight, Play, MapPin, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { church } from "@/lib/church";
-import film from "@/assets/chapel-film.webm.asset.json";
-import filmMp4 from "@/assets/chapel-film.mp4.asset.json";
 import localFilm from "@/assets/video_2026-10-10_16-07-52.mp4";
-import bible from "@/assets/open-bible.jpg";
+import glimpse from "@/assets/chapel-glimpse.mp4";
 import ChapelIntro from "@/components/ChapelIntro";
 import SiteNav from "@/components/SiteNav";
 import ServicesSection from "@/components/ServicesSection";
+import WelcomeSection from "@/components/WelcomeSection";
+import MinistrySection from "@/components/MinistrySection";
+import VisitSection from "@/components/VisitSection";
 import LeadershipSection from "@/components/LeadershipSection";
 import SiteFooter from "@/components/SiteFooter";
 import GalleryTeaser from "@/components/GalleryTeaser";
+import { useRevealOnScroll } from "@/hooks/use-reveal";
 const SacredScene = lazy(() => import("@/components/SacredScene"));
 const ScrollSequence = lazy(() => import("@/components/ScrollSequence"));
 
@@ -54,25 +46,11 @@ function Index() {
   const [intro, setIntro] = useState(true);
   const heroRef = useRef<HTMLElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
+  useRevealOnScroll(!intro);
   useEffect(() => {
     if (intro) return;
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        }),
-      { threshold: 0.12 },
-    );
-    document.querySelectorAll(".reveal").forEach((el) => {
-      const delay = (el as HTMLElement).dataset["delay"];
-      if (delay) (el as HTMLElement).style.transitionDelay = `${delay}ms`;
-      observer.observe(el);
-    });
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return () => observer.disconnect();
+      return;
     }
     const hero = heroRef.current;
     const ministry = document.querySelector<HTMLElement>(".ministry");
@@ -144,7 +122,6 @@ function Index() {
       });
     }
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) window.cancelAnimationFrame(raf);
@@ -212,9 +189,9 @@ function Index() {
               </p>
               <div className="hero-actions hero-enter">
                 <Button variant="chapel" asChild>
-                  <a href="#visit">
+                  <Link to="/visit">
                     Join us this Sunday <ArrowUpRight />
-                  </a>
+                  </Link>
                 </Button>
                 <Button variant="chapelOutline" onClick={() => setWatch(true)}>
                   <Play size={13} /> A glimpse of our chapel
@@ -232,38 +209,7 @@ function Index() {
         </div>
         <ServicesSection />
         <div className="container">
-          <section id="our-story" className="welcome reveal">
-            <div>
-              <div className="section-number">02 / OUR HEART</div>
-              <h2>
-                More than a church.
-                <br />
-                <em>A family in Christ.</em>
-              </h2>
-            </div>
-            <div className="welcome-right">
-              <p className="body-copy">
-                At Pleasant Springs Chapel, faith is something we live together. We are a vibrant
-                Christian community in the heart of Accra, united by a simple calling: to please God
-                and serve our generation.
-              </p>
-              <p className="body-copy mt-4">
-                Whether you are taking your first step in faith or looking for a place to call home,
-                there is a place for you here.
-              </p>
-              <div className="values">
-                <span className="reveal" data-delay="0">
-                  <Cross /> Rooted in faith
-                </span>
-                <span className="reveal" data-delay="100">
-                  <Heart /> United in love
-                </span>
-                <span className="reveal" data-delay="200">
-                  <Users /> Called to serve
-                </span>
-              </div>
-            </div>
-          </section>
+          <WelcomeSection />
         </div>
         <Suspense fallback={<div className="film-section film-loading" aria-hidden="true" />}>
           <ScrollSequence />
@@ -276,87 +222,9 @@ function Index() {
         </div>
         <LeadershipSection />
         <GalleryTeaser />
-        <section id="ministry" className="ministry reveal" data-reveal="zoom">
-          <div className="ministry-photo">
-            <img
-              src={bible}
-              alt="An open Bible illuminated by warm sunlight"
-              width={1536}
-              height={1024}
-              loading="lazy"
-            />
-          </div>
-          <div className="ministry-content">
-            <div className="eyebrow">Grow deeper. Go further.</div>
-            <h2>
-              The Father’s Heart
-              <br />
-              School of Ministry
-            </h2>
-            <p className="body-copy">
-              A heart for God. A life of purpose. Pleasant Springs Chapel is the current home of The
-              Father’s Heart School of Ministry.
-            </p>
-            <p className="body-copy mt-4">
-              Discover a community committed to spiritual growth and a life of service.
-            </p>
-            <a className="text-link" href="#visit">
-              Connect with us at the chapel <ArrowUpRight size={16} />
-            </a>
-          </div>
-        </section>
+        <MinistrySection />
         <div className="container">
-          <section id="visit" className="visit reveal">
-            <div>
-              <div className="section-number">03 / YOU’RE INVITED</div>
-              <h2>
-                Your Sunday.
-                <br />
-                <em>A new beginning.</em>
-              </h2>
-              <p className="body-copy">
-                Come worship, connect, and grow with us.
-                <br />
-                We look forward to welcoming you.
-              </p>
-              <Button variant="chapel" asChild>
-                <a href={church.directions} target="_blank" rel="noreferrer">
-                  Get directions <ArrowUpRight />
-                </a>
-              </Button>
-            </div>
-            <div className="visit-details">
-              <div className="visit-row reveal" data-delay="0">
-                <Clock3 />
-                <div>
-                  <h3>Sunday worship</h3>
-                  <p>
-                    Every Sunday at {church.sundayService}
-                    <br />
-                    Accra, Ghana · GMT
-                  </p>
-                </div>
-              </div>
-              <div className="visit-row reveal" data-delay="100">
-                <MapPin />
-                <div>
-                  <h3>Achimota Mile 7</h3>
-                  <p>
-                    {church.venue}
-                    <br />
-                    Accra, Ghana
-                  </p>
-                </div>
-              </div>
-              <div className="visit-row reveal" data-delay="200">
-                <GraduationCap />
-                <div>
-                  <h3>A place to grow</h3>
-                  <p>Home of The Father’s Heart School of Ministry</p>
-                </div>
-              </div>
-            </div>
-          </section>
+          <VisitSection />
         </div>
       </main>
       <SiteFooter />
@@ -382,8 +250,7 @@ function Index() {
               Pleasant Springs Chapel
             </h2>
             <video controls autoPlay playsInline tabIndex={0}>
-              <source src={film.url} type="video/webm" />
-              <source src={filmMp4.url} type="video/mp4" />
+              <source src={glimpse} type="video/mp4" />
               <source src={localFilm} type="video/mp4" />
             </video>
           </div>
