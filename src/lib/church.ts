@@ -70,6 +70,7 @@ export const leaders: Leader[] = [
 ];
 
 export const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Our Story", href: "/our-story" },
   { label: "Services", href: "/services" },
   { label: "Leadership", href: "/leadership" },
