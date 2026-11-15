@@ -445,6 +445,54 @@ h2 em {
   margin-top: 27px;
   border-color: color-mix(in oklab, var(--ink), transparent 65%);
 }
+/* Scroll-scrubbed emblem: a tall section pins a canvas while 182 film frames
+   are drawn to it in step with scroll position. */
+.film-section {
+  position: relative;
+  height: 320vh;
+}
+.film-section.film-loading {
+  background: var(--background);
+}
+.film-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.film-sticky::before {
+  content: "";
+  position: absolute;
+  width: 120vmin;
+  height: 120vmin;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    oklch(0.79 0.091 87 / 0.07),
+    transparent 70%
+  );
+}
+.film-canvas {
+  width: min(74vmin, 640px);
+  height: min(74vmin, 640px);
+}
+.film-caption {
+  position: absolute;
+  bottom: 42px;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+.film-section.film-static {
+  height: auto;
+}
+.film-section.film-static .film-sticky {
+  position: static;
+  height: auto;
+  padding: 90px 0;
+}
 .visit {
   padding: 90px 0;
   display: grid;
@@ -927,6 +975,16 @@ h2 em {
     grid-template-columns: 1fr;
     gap: 15px;
   }
+  .film-section {
+    height: 260vh;
+  }
+  .film-canvas {
+    width: min(80vmin, 420px);
+    height: min(80vmin, 420px);
+  }
+  .film-caption {
+    bottom: 28px;
+  }
   .visit-details {
     padding-top: 0;
   }
@@ -977,6 +1035,14 @@ h2 em {
   }
   .ministry-photo img {
     transform: none;
+  }
+  .film-section {
+    height: auto;
+  }
+  .film-sticky {
+    position: static;
+    height: auto;
+    padding: 90px 0;
   }
   .marquee-track span {
     font-size: 20px;

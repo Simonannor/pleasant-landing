@@ -24,6 +24,7 @@ import localLogo from "@/assets/chuech logo.jpg";
 import bible from "@/assets/open-bible.jpg";
 import ChapelIntro from "@/components/ChapelIntro";
 const SacredScene = lazy(() => import("@/components/SacredScene"));
+const ScrollSequence = lazy(() => import("@/components/ScrollSequence"));
 
 export const Route = createFileRoute("/")({
   ssr: false,
@@ -359,6 +360,9 @@ function Index() {
           </section>
         </main>
       </div>
+      <Suspense fallback={<div className="film-section film-loading" aria-hidden="true" />}>
+        <ScrollSequence />
+      </Suspense>
       <div className="marquee reveal" data-reveal="fade" aria-hidden="true">
         <div className="marquee-track">
           <span>Pleasing God · Serving Our Generation · Faith · Family · Purpose ·&nbsp;</span>
