@@ -5,6 +5,15 @@ import { useEffect } from "react";
 export function useRevealOnScroll(enabled = true) {
   useEffect(() => {
     if (!enabled) return;
+    const elements = document.querySelectorAll<HTMLElement>(".reveal");
+
+    // Older browsers and embedded webviews may not implement IntersectionObserver.
+    // Keep content visible there instead of leaving it at the CSS hidden state.
+    if (typeof IntersectionObserver === "undefined") {
+      elements.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -13,9 +22,10 @@ export function useRevealOnScroll(enabled = true) {
             observer.unobserve(entry.target);
           }
         }),
-      { threshold: 0.12 },
+      // A small threshold also works for tall sections and short viewports.
+      { threshold: 0.01 },
     );
-    document.querySelectorAll(".reveal").forEach((el) => {
+    elements.forEach((el) => {
       const delay = (el as HTMLElement).dataset["delay"];
       if (delay) (el as HTMLElement).style.transitionDelay = `${delay}ms`;
       observer.observe(el);

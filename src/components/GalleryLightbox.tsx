@@ -49,7 +49,11 @@ export default function GalleryLightbox({
         >
           <X />
         </button>
-        <img src={current.src} alt={current.alt} />
+        {current.type === "video" ? (
+          <video src={current.src} controls autoPlay playsInline />
+        ) : (
+          <img src={current.src} alt={current.alt} />
+        )}
         <div className="lightbox-bar">
           <span className="tile-tag">{current.category}</span>
           <p>{current.alt}</p>

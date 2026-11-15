@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import GalleryLightbox from "@/components/GalleryLightbox";
+import GalleryTile from "@/components/GalleryTile";
 import { featuredShots } from "@/lib/gallery";
 
 export default function GalleryTeaser() {
@@ -35,20 +36,11 @@ export default function GalleryTeaser() {
         </div>
         <div className="bento">
           {featuredShots.map((shot) => (
-            <figure key={shot.alt} className={`tile ${shot.span ?? ""}`}>
-              <button
-                type="button"
-                className="tile-btn"
-                onClick={() => setLightbox(featuredShots.indexOf(shot))}
-                aria-label={`View ${shot.alt}`}
-              >
-                <img src={shot.src} alt={shot.alt} loading="lazy" />
-                <figcaption className="tile-caption">
-                  <span className="tile-tag">{shot.category}</span>
-                  {shot.alt}
-                </figcaption>
-              </button>
-            </figure>
+            <GalleryTile
+              key={shot.src}
+              shot={shot}
+              onOpen={() => setLightbox(featuredShots.indexOf(shot))}
+            />
           ))}
         </div>
       </div>

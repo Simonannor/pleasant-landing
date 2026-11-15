@@ -177,20 +177,27 @@ export default function ScrollSequence() {
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", onResize);
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          io.disconnect();
-          drain();
-        }
-      },
-      { rootMargin: "800px 0px" },
-    );
-    io.observe(section);
+    let io: IntersectionObserver | undefined;
+    if (typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            io?.disconnect();
+            drain();
+          }
+        },
+        { rootMargin: "800px 0px" },
+      );
+      io.observe(section);
+    } else {
+      // Without IO the background frame queue would never start, leaving the
+      // sequence stuck near its opening frames as the user scrolls.
+      drain();
+    }
 
     return () => {
       disposed = true;
-      io.disconnect();
+      io?.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", onResize);
       if (raf) window.cancelAnimationFrame(raf);
@@ -200,7 +207,7 @@ export default function ScrollSequence() {
   return (
     <section
       ref={sectionRef}
-      className={reduced ? "film-section film-static" : "film-section"}
+      className={reduced || staticFrame ? "film-section film-static" : "film-section"}
       aria-label="Pleasant Springs Chapel emblem, revealed as you scroll"
     >
       <div className="film-sticky">

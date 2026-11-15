@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import GalleryLightbox from "@/components/GalleryLightbox";
+import GalleryTile from "@/components/GalleryTile";
 import { galleryFilters, galleryShots, type GalleryFilter } from "@/lib/gallery";
 
 export default function GalleryGrid() {
@@ -39,20 +40,12 @@ export default function GalleryGrid() {
       </div>
       <div className={`bento${filter === "All" ? "" : " bento-flat"}`}>
         {visible.map((shot) => (
-          <figure key={shot.alt} className={`tile ${filter === "All" ? (shot.span ?? "") : ""}`}>
-            <button
-              type="button"
-              className="tile-btn"
-              onClick={() => setLightbox(visible.indexOf(shot))}
-              aria-label={`View ${shot.alt}`}
-            >
-              <img src={shot.src} alt={shot.alt} loading="lazy" />
-              <figcaption className="tile-caption">
-                <span className="tile-tag">{shot.category}</span>
-                {shot.alt}
-              </figcaption>
-            </button>
-          </figure>
+          <GalleryTile
+            key={shot.src}
+            shot={shot}
+            span={filter === "All" ? shot.span : undefined}
+            onOpen={() => setLightbox(visible.indexOf(shot))}
+          />
         ))}
       </div>
       <GalleryLightbox
