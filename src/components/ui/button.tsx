@@ -9,9 +9,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        chapel: 'chapel-button',
-        chapelOutline: 'chapel-button chapel-button-outline',
-        chapelIcon: 'chapel-icon',
+        chapel: "chapel-button",
+        chapelOutline: "chapel-button chapel-button-outline",
+        chapelIcon: "chapel-icon",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
