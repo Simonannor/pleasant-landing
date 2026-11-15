@@ -21,8 +21,8 @@ import ChapelIntro from "@/components/ChapelIntro";
 import SiteNav from "@/components/SiteNav";
 import ServicesSection from "@/components/ServicesSection";
 import LeadershipSection from "@/components/LeadershipSection";
-import GallerySection from "@/components/GallerySection";
 import SiteFooter from "@/components/SiteFooter";
+import GalleryTeaser from "@/components/GalleryTeaser";
 const SacredScene = lazy(() => import("@/components/SacredScene"));
 const ScrollSequence = lazy(() => import("@/components/ScrollSequence"));
 
@@ -275,7 +275,7 @@ function Index() {
           </div>
         </div>
         <LeadershipSection />
-        <GallerySection />
+        <GalleryTeaser />
         <section id="ministry" className="ministry reveal" data-reveal="zoom">
           <div className="ministry-photo">
             <img
