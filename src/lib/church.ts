@@ -1,3 +1,7 @@
+import photoArmah from "@/assets/rev dr. micheal armah.jpeg";
+import photoAyer from "@/assets/pastor ayer.jpeg";
+import photoAnthony from "@/assets/pastor anthony.jpeg";
+
 export const church = {
   name: "Pleasant Springs Chapel",
   mission: "Pleasing God, Serving Our Generation.",
@@ -107,7 +111,7 @@ export const leaders: Leader[] = [
     name: "Rev. Dr. Michael Armah",
     role: "HEAD PASTOR",
     bio: "Meet Rev. Dr. Michael Armah — the set man over Pleasant Springs Chapel, anointed by God to lead this house with the Word, prayer, and a father’s heart. His calling is simple and unshakable: to please God and serve our generation, raising a people of faith, family, and purpose.",
-    photo: null,
+    photo: photoArmah,
   },
   {
     name: "Pastor Emmanuel Sarpong",
@@ -119,13 +123,13 @@ export const leaders: Leader[] = [
     name: "Pastor Michael Ayer",
     role: "ASSOCIATE PASTOR",
     bio: "Meet Pastor Michael Ayer — a worshipper and teacher of the Word, anointed to draw the congregation into God’s presence and to build homes that honour Christ, one family at a time.",
-    photo: null,
+    photo: photoAyer,
   },
   {
     name: "Pastor Anthony Dotse",
     role: "ASSOCIATE PASTOR",
     bio: "Meet Pastor Anthony Dotse — a diligent and joyful servant of the house, anointed to strengthen the ministries of the chapel and to point every generation, young and old, to Jesus.",
-    photo: null,
+    photo: photoAnthony,
   },
 ];
 

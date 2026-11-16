@@ -33,7 +33,6 @@ const CAPTIONS: Record<
     alt: "Congregants lifting their hands in worship",
     category: "Sunday Worship",
     span: "tile-tall",
-    featured: true,
   },
   "photo_2026-11-15_22-20-01.jpg": {
     alt: "Men gathered around the Word for a study circle",
@@ -43,7 +42,6 @@ const CAPTIONS: Record<
     alt: "A study circle sharing notes and laughter",
     category: "Community",
     span: "tile-wide",
-    featured: true,
   },
   "photo_2026-11-15_22-20-48.jpg": {
     alt: "Leaders and elders gathered in a family meeting",
@@ -53,7 +51,6 @@ const CAPTIONS: Record<
     alt: "The congregation gathered for Sunday worship",
     category: "Sunday Worship",
     span: "tile-lg",
-    featured: true,
   },
   "photo_2026-11-15_22-21-19.jpg": {
     alt: "Sunday service in the main hall",
@@ -77,7 +74,6 @@ const CAPTIONS: Record<
     alt: "Joy and laughter at a church celebration",
     category: "Events",
     span: "tile-wide",
-    featured: true,
   },
   "photo_2026-11-15_22-23-01.jpg": {
     alt: "Members gathered around the table at a church celebration",
@@ -86,6 +82,36 @@ const CAPTIONS: Record<
   "IMG_8826.MOV": {
     alt: "A glimpse of our chapel",
     category: "Events",
+  },
+  "WhatsApp Image 2026-11-16 at 6.53.50 PM.jpeg": {
+    alt: "The congregation worshipping under the theme banner",
+    category: "Sunday Worship",
+    span: "tile-lg",
+    featured: true,
+  },
+  "whatsapp.jpg": {
+    alt: "A family presenting their child for dedication",
+    category: "Events",
+    span: "tile-tall",
+    featured: true,
+  },
+  "WhatsApp Image 2026-11-16 at 6.48.00 PM.jpeg": {
+    alt: "Women holding hands in prayer during service",
+    category: "Sunday Worship",
+    span: "tile-half",
+    featured: true,
+  },
+  "WhatsApp Image 2026-11-16 at 6.53.50 PM (1).jpeg": {
+    alt: "Members praying together in the chapel",
+    category: "Sunday Worship",
+    span: "tile-half",
+    featured: true,
+  },
+  "WhatsApp Image 2026-11-16 at 6.53.50 PM (2).jpeg": {
+    alt: "Two brethren holding hands in prayer",
+    category: "Sunday Worship",
+    span: "tile-half",
+    featured: true,
   },
 };
 

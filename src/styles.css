@@ -844,6 +844,9 @@ h2 em {
 .tile-wide {
   grid-column: span 3;
 }
+.tile-half {
+  grid-column: span 2;
+}
 .tile-btn {
   display: block;
   width: 100%;
@@ -1572,6 +1575,9 @@ h2 em {
   .tile-wide {
     grid-column: span 3;
   }
+  .tile-half {
+    grid-column: span 3;
+  }
 }
 @media (max-width: 760px) {
   .container {
@@ -1638,6 +1644,9 @@ h2 em {
     grid-column: span 2;
   }
   .tile-wide {
+    grid-column: span 2;
+  }
+  .tile-half {
     grid-column: span 2;
   }
   .site-footer {
