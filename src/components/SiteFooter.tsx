@@ -10,7 +10,7 @@ import {
 import type { ComponentType } from "react";
 import { Link } from "@tanstack/react-router";
 import { church, contact, navLinks, services, socials } from "@/lib/church";
-import shield from "@/assets/chapel-shield.png";
+import shield from "@/assets/chapel-shield.webp";
 
 // Lucide ships no TikTok brand glyph — small inline icon fills the gap.
 function TikTokIcon({ size = 16 }: { size?: number }) {

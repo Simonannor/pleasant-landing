@@ -1,5 +1,5 @@
 import { church, leaders } from "@/lib/church";
-import shield from "@/assets/chapel-shield.png";
+import shield from "@/assets/chapel-shield.webp";
 
 export default function LeadershipSection() {
   return (

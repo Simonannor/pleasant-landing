@@ -175,7 +175,9 @@ export default function ScrollSequence() {
       };
     }
 
-    // Priority beat first, then the background sweep once the section is near.
+    // Priority beat first (cheap — just 24 of 182 frames), then the remaining
+    // frames stream in only once the section nears the viewport. Nothing in
+    // this section competes with the hero for first-load bandwidth.
     for (let i = 0; i < PRIORITY_COUNT; i++) load(i, false);
 
     resize();
@@ -183,13 +185,12 @@ export default function ScrollSequence() {
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", onResize);
 
-    let io: IntersectionObserver | undefined;
     if (typeof IntersectionObserver !== "undefined") {
-      io = new IntersectionObserver(
+      const io = new IntersectionObserver(
         (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            io?.disconnect();
+          if (!disposed && entries.some((entry) => entry.isIntersecting)) {
             drain();
+            io.disconnect();
           }
         },
         { rootMargin: "800px 0px" },
@@ -203,7 +204,6 @@ export default function ScrollSequence() {
 
     return () => {
       disposed = true;
-      io?.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", onResize);
       if (raf) window.cancelAnimationFrame(raf);

@@ -3,7 +3,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { church, navLinks } from "@/lib/church";
-import shield from "@/assets/chapel-shield.png";
+import shield from "@/assets/chapel-shield.webp";
 import logoFallback from "@/assets/chuech logo.jpg";
 
 export default function SiteNav() {

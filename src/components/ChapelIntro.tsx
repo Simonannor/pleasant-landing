@@ -10,12 +10,10 @@ const MIN_HOLD = 2200;
 const MAX_HOLD = 7000;
 const LEAVE_MS = 900;
 
-// Lovable Asset pointers resolve via the preview proxy; on plain Vite dev or
-// hosts like Netlify they 404, so the bundled copy is the final fallback.
-// In dev the bundle leads, keeping the console free of expected-404 noise.
-const SOURCES = import.meta.env.DEV
-  ? [localFilm, filmWebm.url, filmMp4.url]
-  : [filmWebm.url, filmMp4.url, localFilm];
+// Source order: the bundled film leads everywhere. The Lovable Asset pointers
+// only resolve inside Lovable previews, so on other hosts (Vercel, Netlify)
+// listing them first would add two failed requests before play begins.
+const SOURCES = [localFilm, filmWebm.url, filmMp4.url];
 
 export default function ChapelIntro({ onDone }: { onDone: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
