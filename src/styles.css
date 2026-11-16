@@ -1881,3 +1881,211 @@ h2 em {
     font-size: 20px;
   }
 }
+
+/* ==========================================================================
+   Mobile & tablet responsiveness
+   ========================================================================== */
+
+/* Prevent horizontal scroll from absolutely positioned elements */
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+  /* Account for notched/dynamic-island phones and mobile browser chrome */
+  padding-top: max(78px, env(safe-area-inset-top, 78px));
+  padding-bottom: max(0, env(safe-area-inset-bottom));
+}
+
+/* Tablet scene positioning (761px–1100px) — desktop offset isn't overridden here */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .scene {
+    inset: 150px -10px 40px -10px;
+  }
+  .scene-logo,
+  .scene-fallback img {
+    width: min(55%, 320px);
+  }
+  .hero-content {
+    width: 70%;
+  }
+}
+
+/* Minimum touch targets — 44×44px per accessibility guidelines */
+.filter-pill {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-nav button {
+  min-width: 44px;
+  min-height: 44px;
+}
+.social-btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+.mobile-menu-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+.nav-drawer-panel a {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+/* Film section — sticky scroll-scrub doesn't work well on touch devices;
+   fall back to a static emblem section on mobile */
+@media (max-width: 760px) {
+  .film-section {
+    height: auto;
+    min-height: 50vh;
+    padding: 60px 0;
+  }
+  .film-sticky {
+    position: static !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+  .film-visual {
+    width: min(85vmin, 320px) !important;
+    height: min(85vmin, 320px) !important;
+  }
+  .film-section.film-static .film-still {
+    width: min(85vmin, 320px) !important;
+    height: min(85vmin, 320px) !important;
+  }
+}
+
+/* Lightbox mobile */
+@media (max-width: 760px) {
+  .lightbox {
+    padding: 14px;
+  }
+  .lightbox-close {
+    top: -48px;
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+  }
+  .lightbox-inner > img,
+  .lightbox-inner > video {
+    max-height: 60vh;
+    border-radius: 8px;
+  }
+  .lightbox-bar {
+    font-size: 11px;
+    gap: 10px;
+  }
+}
+
+/* Hero on very small screens */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 650px;
+  }
+  .hero-content {
+    padding: 30px 0 40px;
+  }
+  h1 {
+    font-size: 36px;
+    max-width: 300px;
+    margin: 20px 0 16px;
+  }
+  .hero-copy {
+    font-size: 11px;
+  }
+  .hero-actions {
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .chapel-button {
+    padding-inline: 16px;
+    font-size: 10px;
+    height: 44px;
+  }
+}
+
+/* Bento grid mobile — give captions room */
+@media (max-width: 760px) {
+  .bento {
+    grid-auto-rows: 140px;
+    gap: 10px;
+  }
+  .tile-caption {
+    padding: 12px 14px;
+    font-size: 10px;
+  }
+  .tile-play {
+    width: 34px;
+    height: 34px;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+/* Nav drawer mobile refinements */
+@media (max-width: 760px) {
+  .nav-drawer-panel {
+    width: min(300px, 92vw);
+    padding: 24px 20px;
+  }
+  .nav-drawer-head {
+    font-size: 17px;
+    padding-bottom: 14px;
+    margin-bottom: 12px;
+  }
+  .nav-drawer-panel a {
+    padding: 12px 2px;
+    font-size: 13px;
+  }
+  .nav-inner {
+    gap: 16px;
+  }
+}
+
+/* Intro mobile */
+@media (max-width: 760px) {
+  .intro-core {
+    width: min(520px, calc(100% - 32px));
+  }
+  .intro-frame {
+    width: min(260px, 80vw);
+  }
+  .intro-title {
+    font-size: 28px;
+  }
+  .intro-enter,
+  .intro-skip {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px 16px;
+    font-size: 11px;
+  }
+}
+
+/* Section headings mobile */
+@media (max-width: 760px) {
+  .services,
+  .leadership,
+  .gallery,
+  .visit,
+  .welcome {
+    padding: 60px 0;
+  }
+  .services-head h2,
+  .leadership-head h2,
+  .gallery-head h2 {
+    font-size: 40px;
+  }
+}
+
+/* Ensure all sections have adequate horizontal padding on small screens */
+@media (max-width: 760px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+}
