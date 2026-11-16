@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { church } from "@/lib/church";
+import logoCutout from "@/assets/logo/chapel-frame-134-cutout.svg";
 
 // The 6 s chapel film, exported at 30 fps as 182 numbered frames (560×560
 // JPEG, ~2 MB total). Bundled imports per project convention; the eager glob
@@ -18,7 +19,6 @@ const PRIORITY_COUNT = Math.min(24, FRAME_COUNT);
 // Matches SacredScene's dpr cap — beyond this the difference is invisible.
 const DPR_CAP = 1.5;
 const BATCH_SIZE = 6;
-
 export default function ScrollSequence() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,7 +36,7 @@ export default function ScrollSequence() {
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       // No 2D canvas (very old browsers): degrade to a still emblem.
-      setStaticFrame(FRAMES[FRAME_COUNT - 1] ?? null);
+      setStaticFrame(logoCutout);
       return;
     }
 
@@ -44,6 +44,8 @@ export default function ScrollSequence() {
       FRAME_COUNT,
     ).fill(null);
     const loaded = new Set<number>();
+    const loading = new Set<number>();
+    const failed = new Set<number>();
     let disposed = false;
     let drawn = -1;
     let raf = 0;
@@ -68,10 +70,10 @@ export default function ScrollSequence() {
       if (!loaded.has(idx) || idx === drawn) return;
       const img = images[idx];
       if (!img) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
       const w = img.width * scale;
       const h = img.height * scale;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
       drawn = idx;
     };
@@ -103,21 +105,34 @@ export default function ScrollSequence() {
       raf = window.requestAnimationFrame(() => {
         raf = 0;
         target = Math.round(progress() * (FRAME_COUNT - 1));
+        // Keep frames around the live scroll position ahead of the coarse
+        // background sweep so fast scrolls cannot outrun image decoding.
+        for (let offset = -3; offset <= 3; offset++) {
+          const index = target + offset;
+          if (index >= 0 && index < FRAME_COUNT) load(index, false);
+        }
         render();
       });
     };
 
     const load = (index: number, lowPriority: boolean) => {
+      if (images[index] || loading.has(index) || failed.has(index)) return;
       const src = FRAMES[index];
       if (!src) return;
       const img = new Image();
+      loading.add(index);
       img.decoding = "async";
       if (lowPriority && "fetchPriority" in img) img.fetchPriority = "low";
       img.onload = () => {
+        loading.delete(index);
         if (disposed) return;
         images[index] = img;
         loaded.add(index);
         render(); // sharpen whatever scroll position is live right now
+      };
+      img.onerror = () => {
+        loading.delete(index);
+        failed.add(index);
       };
       img.src = src;
     };
@@ -154,16 +169,7 @@ export default function ScrollSequence() {
 
     if (reduced) {
       // No pinning, no scrubbing: settle on the completed emblem.
-      const src = FRAMES[FRAME_COUNT - 1];
-      if (!src) return;
-      const img = new Image();
-      img.decoding = "async";
-      img.onload = () => {
-        if (disposed) return;
-        resize();
-        draw(FRAME_COUNT - 1);
-      };
-      img.src = src;
+      setStaticFrame(logoCutout);
       return () => {
         disposed = true;
       };
@@ -212,14 +218,23 @@ export default function ScrollSequence() {
     >
       <div className="film-sticky">
         {staticFrame ? (
-          <img className="film-canvas" src={staticFrame} alt="" width={560} height={560} />
-        ) : (
-          <canvas
-            ref={canvasRef}
-            className="film-canvas"
-            role="img"
-            aria-label="Animated Pleasant Springs Chapel emblem"
+          <img
+            className="film-canvas film-still"
+            src={staticFrame}
+            alt=""
+            width={560}
+            height={560}
           />
+        ) : (
+          <div className="film-visual">
+            <img className="film-canvas-underlay" src={logoCutout} alt="" aria-hidden="true" />
+            <canvas
+              ref={canvasRef}
+              className="film-canvas"
+              role="img"
+              aria-label="Animated Pleasant Springs Chapel emblem"
+            />
+          </div>
         )}
         <p className="film-caption">{church.mission}</p>
       </div>

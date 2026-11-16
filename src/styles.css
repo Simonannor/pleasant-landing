@@ -351,12 +351,53 @@ h1 em {
   inset: 0 -8% 0 39%;
   z-index: 1;
 }
+.scene-art {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  pointer-events: none;
+}
+.scene-logo {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: min(62%, 360px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 16px 20px rgba(0, 0, 0, 0.38));
+}
+.scene-canvas,
+.scene-rings-fallback {
+  position: absolute !important;
+  inset: 0;
+  z-index: 2;
+  width: 100% !important;
+  height: 100% !important;
+}
+.scene-canvas {
+  pointer-events: auto;
+}
+.scene-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.scene-rings-fallback {
+  background:
+    radial-gradient(ellipse at center, transparent 42%, rgba(110, 129, 120, 0.7) 43%, transparent 44%),
+    radial-gradient(ellipse at center, transparent 49%, rgba(216, 182, 101, 0.75) 50%, transparent 51%);
+}
 .scene-fallback {
   height: 100%;
   display: grid;
   place-items: center;
-  font-size: 270px;
-  color: var(--primary);
+}
+.scene-fallback img {
+  width: min(62%, 360px);
+  aspect-ratio: 1;
+  object-fit: contain;
 }
 .scene-caption {
   position: absolute;
@@ -396,7 +437,7 @@ h1 em {
 }
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 .service-card {
@@ -620,7 +661,7 @@ h2 em {
 }
 .leadership-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 32px;
 }
 .leader-card {
@@ -1046,17 +1087,51 @@ h2 em {
 .film-sticky::before {
   content: "";
   position: absolute;
-  width: 120vmin;
-  height: 120vmin;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    oklch(0.79 0.091 87 / 0.07),
-    transparent 70%
-  );
+  left: 50%;
+  top: 50%;
+  width: min(120vmin, 100vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(ellipse at 50% 42%, oklch(0.79 0.091 87 / 0.11), transparent 48%),
+    radial-gradient(ellipse at 50% 64%, rgba(67, 116, 105, 0.09), transparent 65%);
+  pointer-events: none;
 }
-.film-canvas {
+.film-sticky::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(88vmin, 760px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(216, 182, 101, 0.075);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 26px rgba(127, 157, 146, 0.018),
+    0 0 0 27px rgba(127, 157, 146, 0.055),
+    inset 0 0 52px rgba(216, 182, 101, 0.025);
+  pointer-events: none;
+}
+.film-visual {
+  position: relative;
+  z-index: 1;
   width: min(74vmin, 640px);
   height: min(74vmin, 640px);
+}
+.film-canvas-underlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.film-canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .film-caption {
   position: absolute;
@@ -1074,6 +1149,11 @@ h2 em {
   position: static;
   height: auto;
   padding: 90px 0;
+}
+.film-section.film-static .film-still {
+  width: min(74vmin, 640px);
+  height: min(74vmin, 640px);
+  object-fit: contain;
 }
 .visit {
   padding: 96px 0;
@@ -1556,6 +1636,11 @@ h2 em {
   .scene {
     inset: 355px -15px 25px -15px;
   }
+  .scene-logo,
+  .scene-fallback img {
+    left: 50%;
+    width: min(65%, 270px);
+  }
   .scene-caption {
     display: none;
   }
@@ -1620,6 +1705,14 @@ h2 em {
     height: 260vh;
   }
   .film-canvas {
+    width: 100%;
+    height: 100%;
+  }
+  .film-visual {
+    width: min(80vmin, 420px);
+    height: min(80vmin, 420px);
+  }
+  .film-section.film-static .film-still {
     width: min(80vmin, 420px);
     height: min(80vmin, 420px);
   }

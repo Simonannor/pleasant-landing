@@ -5,6 +5,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import localFilm from "@/assets/video_2026-10-10_16-07-52.mp4";
 import glimpse from "@/assets/chapel-glimpse.mp4";
+import logoCutout from "@/assets/logo/chapel-frame-134-cutout.svg";
 import ChapelIntro from "@/components/ChapelIntro";
 import SiteNav from "@/components/SiteNav";
 import ServicesSection from "@/components/ServicesSection";
@@ -170,9 +171,16 @@ function Index() {
           <section ref={heroRef} className="hero" aria-labelledby="hero-title">
             <div
               className="scene"
-              aria-label="Animated golden cross surrounded by sculptural rings"
+              role="img"
+              aria-label="Pleasant Springs Chapel logo surrounded by sculptural rings"
             >
-              <Suspense fallback={<div className="scene-fallback">✝</div>}>
+              <Suspense
+                fallback={
+                  <div className="scene-fallback">
+                    <img src={logoCutout} alt="" />
+                  </div>
+                }
+              >
                 <SacredScene />
               </Suspense>
             </div>

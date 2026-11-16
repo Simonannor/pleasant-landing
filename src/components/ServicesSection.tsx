@@ -1,4 +1,4 @@
-import { ArrowUpRight, CalendarPlus, MapPin } from "lucide-react";
+import { ArrowUpRight, CalendarPlus, MapPin, Wifi } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { church, services } from "@/lib/church";
@@ -23,7 +23,12 @@ export default function ServicesSection() {
               <div className="service-time">{s.time}</div>
               <p className="service-desc">{s.description}</p>
               <div className="service-meta">
-                <MapPin size={12} aria-hidden="true" /> {s.location}
+                {s.directions === null ? (
+                  <Wifi size={12} aria-hidden="true" />
+                ) : (
+                  <MapPin size={12} aria-hidden="true" />
+                )}
+                {s.location}
               </div>
               <div className="service-links">
                 {s.calendar && (
@@ -31,9 +36,16 @@ export default function ServicesSection() {
                     Add to calendar <CalendarPlus size={14} />
                   </a>
                 )}
-                <a className="text-link" href={church.directions} target="_blank" rel="noreferrer">
-                  Get directions <ArrowUpRight size={14} />
-                </a>
+                {s.directions !== null && (
+                  <a
+                    className="text-link"
+                    href={s.directions ?? church.directions}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Get directions <ArrowUpRight size={14} />
+                  </a>
+                )}
               </div>
             </article>
           ))}

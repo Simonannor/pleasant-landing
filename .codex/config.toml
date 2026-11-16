@@ -1,0 +1,7 @@
+[mcp_servers.playwright]
+command = "node.exe"
+args = [".codex/playwright/node_modules/@playwright/mcp/cli.js", "--headless", "--isolated", "--browser", "msedge"]
+cwd = "C:\\Users\\Hp\\Documents\\codes\\web-netlify-deploy\\church\\landing page"
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+disabled_tools = ["browser_run_code_unsafe"]

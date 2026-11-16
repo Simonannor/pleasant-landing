@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { church, services } from "../lib/church";
+import { church, leaders, services } from "../lib/church";
 
 describe("Church information", () => {
   it("lists Sunday service at 8:30 AM", () => expect(church.sundayService).toBe("8:30 AM"));
@@ -20,5 +20,32 @@ describe("Services schedule", () => {
     expect(sunday?.location).toBe(church.location);
     expect(sunday?.calendar).toBeTruthy();
   });
-  it("offers three gatherings", () => expect(services).toHaveLength(3));
+  it("offers four weekly gatherings", () => expect(services).toHaveLength(4));
+  it("lists the mid-week rhythm: Tuesday class, Wednesday online study, Friday miracle hour", () => {
+    const names = services.map((s) => s.name);
+    expect(names).toContain("Discipleship Class");
+    expect(names).toContain("Online Bible Studies");
+    expect(names).toContain("Miracle Hour");
+  });
+  it("gathers the Wednesday study online and hides directions for it", () => {
+    const online = services.find((s) => s.name === "Online Bible Studies");
+    expect(online?.location).toBe("Online");
+    expect(online?.directions).toBeNull();
+  });
+});
+
+describe("Leadership", () => {
+  it("names the head pastor", () => {
+    const head = leaders.find((l) => l.role === "HEAD PASTOR");
+    expect(head?.name).toBe("Rev. Dr. Michael Armah");
+  });
+  it("lists three associate pastors", () => {
+    const associates = leaders.filter((l) => l.role === "ASSOCIATE PASTOR");
+    expect(associates).toHaveLength(3);
+    expect(associates.map((l) => l.name)).toEqual([
+      "Pastor Emmanuel Sarpong",
+      "Pastor Michael Ayer",
+      "Pastor Anthony Dotse",
+    ]);
+  });
 });
