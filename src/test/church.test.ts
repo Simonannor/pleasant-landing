@@ -13,6 +13,17 @@ describe("Church information", () => {
     expect(church.theme).toBe("Season of Multiple Fruitfulness"));
   it("identifies the ministry school", () =>
     expect(church.ministry).toBe("The Father’s Heart School of Ministry"));
+  it("carries the vision statement", () =>
+    expect(church.vision).toContain("transform society through our unwavering faith in Christ"));
+  it("carries the mission statement", () =>
+    expect(church.mission).toBe("Pleasing God, Serving Our Generation."));
+});
+
+describe("Online Bible Studies", () => {
+  it("provides a Google Meet link for joining online", () => {
+    const online = services.find((s) => s.name === "Online Bible Studies");
+    expect(online?.meetingLink).toBe("https://meet.google.com/bwf-sgkr-byc");
+  });
 });
 
 describe("Services schedule", () => {

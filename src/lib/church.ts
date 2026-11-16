@@ -5,6 +5,8 @@ import photoAnthony from "@/assets/head_pastors/pastor-anthony-dotse.jpeg";
 export const church = {
   name: "Pleasant Springs Chapel",
   mission: "Pleasing God, Serving Our Generation.",
+  vision:
+    "Our vision is to transform society through our unwavering faith in Christ and dedicated service to mankind.",
   sundayService: "8:30 AM",
   location: "Achimota Mile 7, Accra, Ghana",
   venue: "On the premises of Kaspong Ltd.",
@@ -13,6 +15,7 @@ export const church = {
   themeYear: "2026",
   directions:
     "https://www.google.com/maps/search/?api=1&query=Pleasant+Springs+Chapel+Achimota+Mile+7+Accra+Ghana",
+  onlineMeetingLink: "https://meet.google.com/bwf-sgkr-byc",
 };
 
 // Recurring-event templates for Google Calendar. Ghana stays on GMT year
@@ -35,6 +38,8 @@ export type ServiceCard = {
   calendar?: string;
   /** Directions link; null hides it (e.g. for online gatherings). */
   directions?: string | null;
+  /** Online meeting link (e.g. Google Meet) for virtual gatherings. */
+  meetingLink?: string | null;
 };
 
 // Weekly schedule as provided by the church. Wednesday's study gathers
@@ -81,6 +86,7 @@ export const services: ServiceCard[] = [
       "WE",
     ),
     directions: null,
+    meetingLink: church.onlineMeetingLink,
   },
   {
     name: "Miracle Hour",

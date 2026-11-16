@@ -1,4 +1,5 @@
 import { Cross, Heart, Users } from "lucide-react";
+import { church } from "@/lib/church";
 
 export default function WelcomeSection() {
   return (
@@ -10,6 +11,16 @@ export default function WelcomeSection() {
           <br />
           <em>A family in Christ.</em>
         </h2>
+        <div className="vision-mission">
+          <div className="vision-mission-card">
+            <div className="vm-label">Our Vision</div>
+            <p className="vm-text">{church.vision}</p>
+          </div>
+          <div className="vision-mission-card">
+            <div className="vm-label">Our Mission</div>
+            <p className="vm-text">{church.mission}</p>
+          </div>
+        </div>
       </div>
       <div className="welcome-right">
         <p className="body-copy">

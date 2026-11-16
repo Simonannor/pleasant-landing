@@ -36,7 +36,17 @@ export default function ServicesSection() {
                     Add to calendar <CalendarPlus size={14} />
                   </a>
                 )}
-                {s.directions !== null && (
+                {s.meetingLink && (
+                  <a
+                    className="text-link"
+                    href={s.meetingLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Join meeting <ArrowUpRight size={14} />
+                  </a>
+                )}
+                {s.directions !== null && !s.meetingLink && (
                   <a
                     className="text-link"
                     href={s.directions ?? church.directions}
