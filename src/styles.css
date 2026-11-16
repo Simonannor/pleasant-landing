@@ -1140,6 +1140,26 @@ h2 em {
   flex-shrink: 0;
   margin-top: 4px;
 }
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-bottom: 18px;
+}
+.footer-contact a {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--body-dark);
+  transition: color 0.25s;
+}
+.footer-contact a:hover {
+  color: var(--primary);
+}
+.footer-contact svg {
+  color: var(--primary);
+}
 /* Scroll-scrubbed emblem: a tall section pins a canvas while 182 film frames
    are drawn to it in step with scroll position. */
 .film-section {

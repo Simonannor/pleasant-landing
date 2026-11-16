@@ -141,3 +141,24 @@ export const navLinks = [
   { label: "Gallery", href: "/gallery" },
   { label: "School of Ministry", href: "/ministry" },
 ];
+
+export const socials = [
+  {
+    label: "Facebook",
+    href: "https://web.facebook.com/p/Pleasant-Springs-Chapel-61555229276169/",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/pleasantspringschapel/",
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@pleasantspringschapel",
+  },
+];
+
+export const contact = {
+  phone: "+233 25 780 9644",
+  phoneHref: "tel:+233257809644",
+  whatsapp: "https://wa.me/233257809644",
+};

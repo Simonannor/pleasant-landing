@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { church, leaders, services } from "../lib/church";
+import { church, contact, leaders, services, socials } from "../lib/church";
 
 describe("Church information", () => {
   it("lists Sunday service at 8:30 AM", () => expect(church.sundayService).toBe("8:30 AM"));
@@ -49,5 +49,18 @@ describe("Leadership", () => {
       "Pastor Michael Ayer",
       "Pastor Anthony Dotse",
     ]);
+  });
+});
+
+describe("Contact and socials", () => {
+  it("lists the church phone line", () => expect(contact.phoneHref).toBe("tel:+233257809644"));
+  it("links WhatsApp to the same line", () =>
+    expect(contact.whatsapp).toBe("https://wa.me/233257809644"));
+  it("points every social to its real profile", () => {
+    const byLabel = new Map(socials.map((s) => [s.label, s.href]));
+    expect(byLabel.get("Facebook")).toContain("facebook.com/p/Pleasant-Springs-Chapel");
+    expect(byLabel.get("Instagram")).toBe("https://www.instagram.com/pleasantspringschapel/");
+    expect(byLabel.get("TikTok")).toBe("https://www.tiktok.com/@pleasantspringschapel");
+    expect(socials.every((s) => s.href.startsWith("https://"))).toBe(true);
   });
 });
