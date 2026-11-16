@@ -283,7 +283,7 @@ button {
   background: var(--muted);
 }
 .mobile-menu-toggle {
-  display: none;
+  display: inline-flex;
 }
 .hero {
   position: relative;
@@ -1593,14 +1593,11 @@ h2 em {
     width: calc(100% - 64px);
   }
   /* Route buttons move behind the drawer so the church name sits freely */
-  .desktop-nav {
+  .desktop-nav .nav-link {
     display: none;
   }
   .nav-cta {
     display: none;
-  }
-  .mobile-menu-toggle {
-    display: inline-flex;
   }
   .nav-brand {
     gap: 10px;
@@ -1682,7 +1679,7 @@ h2 em {
   .nav-cta {
     display: none;
   }
-  .desktop-nav {
+  .desktop-nav .nav-link {
     display: none;
   }
   .mobile-menu-toggle {

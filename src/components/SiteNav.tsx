@@ -55,27 +55,27 @@ export default function SiteNav() {
           </span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
-          {navLinks.map((l) => (
+          {navLinks.filter((l) => l.label !== "Services").map((l) => (
             <Link key={l.href} className="nav-link" to={l.href}>
               {l.label}
             </Link>
           ))}
+          <Button
+            className="mobile-menu-toggle"
+            variant="chapelIcon"
+            size="icon"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X /> : <Menu />}
+          </Button>
           <Button variant="chapel" asChild className="nav-cta">
             <Link to="/visit">
               Plan your visit <ArrowUpRight />
             </Link>
           </Button>
         </nav>
-        <Button
-          className="mobile-menu-toggle"
-          variant="chapelIcon"
-          size="icon"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X /> : <Menu />}
-        </Button>
       </div>
       {open && (
         <div className="nav-drawer" role="dialog" aria-modal="true" aria-label="Menu">
