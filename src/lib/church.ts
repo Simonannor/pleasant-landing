@@ -1,6 +1,6 @@
-import photoArmah from "@/assets/rev dr. micheal armah.jpeg";
-import photoAyer from "@/assets/pastor ayer.jpeg";
-import photoAnthony from "@/assets/pastor anthony.jpeg";
+import photoArmah from "@/assets/head_pastors/rev-dr-michael-armah.jpeg";
+import photoAyer from "@/assets/head_pastors/pastor-michael-ayer.jpeg";
+import photoAnthony from "@/assets/head_pastors/pastor-anthony-dotse.jpeg";
 
 export const church = {
   name: "Pleasant Springs Chapel",

@@ -1,13 +1,14 @@
 // Shared gallery source: one module for the landing-page teaser and the
 // /gallery route, so captions and categories stay in sync everywhere.
 //
-// AUTO-IMPORT: every image/video file inside src/assets/gallery/ is picked up
-// automatically by the glob below — in dev a new file appears on save, and a
-// production build includes everything present at build time. Add captions for
-// a new file by dropping its filename into CAPTIONS; files without a manifest
-// entry still show up with a default caption and category.
+// AUTO-IMPORT — two tiers:
+//   src/assets/gallery/**        → the /gallery route (global collection)
+//   src/assets/gallery/preview/  → also featured on the landing-page teaser
+// Drop a file anywhere in either folder and it is picked up automatically
+// (instant in dev; included in the next production build). Give a new file a
+// caption/category/bento-span by adding its filename to CAPTIONS below.
 const modules = import.meta.glob<{ default: string }>(
-  "../assets/gallery/*.{jpg,jpeg,png,webp,avif,gif,mp4,MP4,mov,MOV,webm,WEBM,m4v,M4V}",
+  "../assets/gallery/**/*.{jpg,jpeg,png,webp,avif,gif,mp4,MP4,mov,MOV,webm,WEBM,m4v,M4V}",
   { eager: true },
 );
 
@@ -20,7 +21,7 @@ export type GalleryShot = {
   category: GalleryCategory;
   /** Bento span classes, applied only in the unfiltered "All" view. */
   span?: string;
-  /** Shown in the landing-page teaser. */
+  /** Shown in the landing-page teaser (automatic for preview/ files). */
   featured?: boolean;
 };
 
@@ -79,60 +80,58 @@ const CAPTIONS: Record<
     alt: "Members gathered around the table at a church celebration",
     category: "Events",
   },
-  "IMG_8826.MOV": {
+  "chapel-glimpse.mp4": {
     alt: "A glimpse of our chapel",
     category: "Events",
   },
-  "WhatsApp Image 2026-11-16 at 6.53.50 PM.jpeg": {
+  // Landing-page preview shots (src/assets/gallery/preview/)
+  "worship-banner.jpg": {
     alt: "The congregation worshipping under the theme banner",
     category: "Sunday Worship",
     span: "tile-lg",
-    featured: true,
   },
-  "whatsapp.jpg": {
+  "baby-dedication.jpg": {
     alt: "A family presenting their child for dedication",
     category: "Events",
     span: "tile-tall",
-    featured: true,
   },
-  "WhatsApp Image 2026-11-16 at 6.48.00 PM.jpeg": {
+  "praying-women.jpg": {
     alt: "Women holding hands in prayer during service",
     category: "Sunday Worship",
     span: "tile-half",
-    featured: true,
   },
-  "WhatsApp Image 2026-11-16 at 6.53.50 PM (1).jpeg": {
+  "praying-brethren.jpg": {
     alt: "Members praying together in the chapel",
     category: "Sunday Worship",
     span: "tile-half",
-    featured: true,
   },
-  "WhatsApp Image 2026-11-16 at 6.53.50 PM (2).jpeg": {
+  "covenant-prayer.jpg": {
     alt: "Two brethren holding hands in prayer",
     category: "Sunday Worship",
     span: "tile-half",
-    featured: true,
   },
 };
 
 const isVideo = (src: string) => /\.(mp4|mov|webm|m4v)$/i.test(src);
 
-type FileEntry = { name: string; src: string };
+type FileEntry = { name: string; path: string; src: string };
 
 const files: FileEntry[] = Object.entries(modules).map(([path, mod]) => ({
   name: path.split("/").pop() ?? path,
+  path,
   src: mod.default,
 }));
 
 const build = (file: FileEntry): GalleryShot => {
   const meta = CAPTIONS[file.name];
+  const featured = meta?.featured ?? file.path.includes("/preview/");
   return {
     src: file.src,
     type: isVideo(file.src) ? "video" : "image",
     alt: meta?.alt ?? "A moment from church life",
     category: meta?.category ?? "Events",
     ...(meta?.span ? { span: meta.span } : {}),
-    ...(meta?.featured ? { featured: true } : {}),
+    ...(featured ? { featured: true } : {}),
   };
 };
 
@@ -144,10 +143,10 @@ export const galleryShots: GalleryShot[] = [
     .map((name) => byName.get(name))
     .filter((f): f is FileEntry => Boolean(f))
     .map(build),
-  // …then any newly dropped files, sorted by filename.
+  // …then any newly dropped files, sorted by path.
   ...files
     .filter((f) => !(f.name in CAPTIONS))
-    .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
+    .sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0))
     .map(build),
 ];
 

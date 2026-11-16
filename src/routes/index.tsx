@@ -4,7 +4,7 @@ import { ArrowUpRight, Play, MapPin, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import localFilm from "@/assets/video_2026-10-10_16-07-52.mp4";
-import glimpse from "@/assets/chapel-glimpse.mp4";
+import glimpse from "@/assets/gallery/chapel-glimpse.mp4";
 import logoCutout from "@/assets/logo/chapel-frame-134-cutout.svg";
 import ChapelIntro from "@/components/ChapelIntro";
 import SiteNav from "@/components/SiteNav";

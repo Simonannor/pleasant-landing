@@ -50,7 +50,7 @@ export default function GalleryLightbox({
           <X />
         </button>
         {current.type === "video" ? (
-          <video src={current.src} controls autoPlay playsInline />
+          <video src={current.src} controls autoPlay muted playsInline />
         ) : (
           <img src={current.src} alt={current.alt} />
         )}

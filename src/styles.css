@@ -28,6 +28,7 @@
   --radius-lg: 8px;
 }
 :root {
+  color-scheme: dark;
   --background: #0d1512;
   --foreground: #f5f2eb;
   --body-dark: #dce2df;
@@ -51,6 +52,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  /* Dark base behind overscroll / short-page areas so no white ever peeks. */
+  background: #0d1512;
 }
 body {
   margin: 0;
@@ -60,6 +63,10 @@ body {
   font-family: var(--font-sans);
   font-size: 15px;
   letter-spacing: 0;
+}
+/* Video elements render light-grey before their first frame arrives. */
+video {
+  background-color: #0d1512;
 }
 button,
 a {
@@ -1389,6 +1396,7 @@ h2 em {
   width: 100%;
   max-height: 75vh;
   display: block;
+  background: #000;
 }
 .film-close {
   position: absolute;
