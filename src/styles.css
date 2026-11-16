@@ -38,7 +38,8 @@
   --muted: #131c18;
   --muted-foreground: #9aa5a0;
   --border: rgba(216, 182, 101, 0.2);
-  --paper: #f5f2eb;
+  --paper: #ebe5d5;
+  --paper-deep: #e2dbc8;
   --ink: #2b3330;
   --scene-gold: #cbb478;
   --scene-stone: #6e8178;
@@ -94,14 +95,14 @@ button {
   left: 0;
   right: 0;
   z-index: 50;
-  background: var(--glass);
-  backdrop-filter: blur(16px) saturate(1.15);
-  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  background: rgba(13, 21, 18, 0.88);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
   border-bottom: 1px solid var(--border);
   transition: box-shadow 0.4s ease, background 0.4s ease;
 }
 .nav-shell.is-scrolled {
-  background: rgba(13, 21, 18, 0.86);
+  background: rgba(13, 21, 18, 0.96);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 .nav-inner {
@@ -629,7 +630,7 @@ h2 em {
 .ministry {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: var(--paper);
+  background: linear-gradient(180deg, var(--paper), var(--paper-deep));
   color: var(--ink);
 }
 .ministry-photo {
@@ -692,7 +693,7 @@ h2 em {
 }
 /* Leadership — warm cream interlude */
 .leadership {
-  background: var(--paper);
+  background: linear-gradient(180deg, var(--paper), var(--paper-deep));
   color: var(--ink);
   padding: 96px 0;
   border-top: 1px solid var(--border);
@@ -729,14 +730,14 @@ h2 em {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(43, 51, 48, 0.12);
-  background: linear-gradient(160deg, #ebe6da, #dcd5c4);
+  background: linear-gradient(165deg, #17251f, #0d1512 70%);
   transition:
     border-color 0.35s,
     box-shadow 0.35s;
 }
 .leader-card:hover .leader-photo {
   border-color: rgba(216, 182, 101, 0.65);
-  box-shadow: 0 20px 40px rgba(43, 51, 48, 0.14);
+  box-shadow: 0 20px 40px rgba(43, 51, 48, 0.18);
 }
 .leader-photo img {
   width: 100%;
@@ -750,12 +751,19 @@ h2 em {
   place-items: center;
   align-content: center;
   gap: 14px;
-  color: rgba(43, 51, 48, 0.45);
+  color: rgba(216, 182, 101, 0.8);
+}
+.leader-soon img {
+  width: 96px;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 6px 18px rgba(216, 182, 101, 0.25));
 }
 .leader-soon span {
   font-size: 9px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: rgba(245, 242, 235, 0.55);
 }
 .leader-name {
   font-family: var(--font-display);
