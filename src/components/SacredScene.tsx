@@ -32,16 +32,16 @@ function Rings({ reduced }: { reduced: boolean }) {
       {[0, 1, 2].map((i) => (
         <mesh
           key={i}
-          position={[0, 0.15, -0.22 - i * 0.2]}
+          position={[0, 0.15, -0.28 - i * 0.24]}
           rotation={[0, 0, -0.23 + i * 0.09]}
           scale={[1, 1.3, 1]}
         >
-          <torusGeometry args={[1.55 + i * 0.14, 0.026 + i * 0.005, 8, 120, Math.PI * 1.83]} />
+          <torusGeometry args={[1.85 + i * 0.17, 0.03 + i * 0.006, 8, 120, Math.PI * 1.83]} />
           <meshStandardMaterial color={i === 1 ? gold : stone} metalness={0.8} roughness={0.3} />
         </mesh>
       ))}
-      <mesh position={[0, -1.85, -0.2]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.55, 0.025, 8, 96]} />
+      <mesh position={[0, -2.2, -0.25]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[1.85, 0.03, 8, 96]} />
         <meshStandardMaterial color={gold} metalness={0.8} roughness={0.3} />
       </mesh>
     </group>

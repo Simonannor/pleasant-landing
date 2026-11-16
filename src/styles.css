@@ -129,18 +129,7 @@ button {
   font-size: 20px;
   line-height: 1.05;
   color: var(--foreground);
-  /* Keep brand from crowding nav items on narrow screens */
-  max-width: 180px;
-  overflow: hidden;
-}
-.brand-name small {
-  font-family: var(--font-sans);
-  font-size: 8px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  display: block;
-  margin-top: 6px;
-  color: var(--muted-foreground);
+  /* Brand name sits freely — no width cap; nav moves behind the drawer menu */
 }
 .brand-name small {
   font-family: var(--font-sans);
@@ -382,7 +371,7 @@ h1 em {
   z-index: 1;
   top: 50%;
   left: 50%;
-  width: min(62%, 360px);
+  width: min(45%, 260px);
   aspect-ratio: 1;
   object-fit: contain;
   transform: translate(-50%, -50%);
@@ -1603,15 +1592,23 @@ h2 em {
   .container {
     width: calc(100% - 64px);
   }
+  /* Route buttons move behind the drawer so the church name sits freely */
   .desktop-nav {
-    gap: 20px;
+    display: none;
+  }
+  .nav-cta {
+    display: none;
+  }
+  .mobile-menu-toggle {
+    display: inline-flex;
   }
   .nav-brand {
     gap: 10px;
+    flex-shrink: 0;
   }
   .brand-name {
     font-size: 17px;
-    max-width: 150px;
+    /* no width cap — brand takes the space it needs */
   }
   h1 {
     font-size: 68px;
@@ -1641,7 +1638,7 @@ h2 em {
     grid-column: span 3;
   }
 }
-/* Tablet header: brand + desktop nav share the bar */
+/* Tablet spacing only — nav is already behind the drawer at this breakpoint */
 @media (min-width: 761px) and (max-width: 1100px) {
   .nav-inner {
     gap: 16px;
@@ -1652,7 +1649,7 @@ h2 em {
   }
   .brand-name {
     font-size: 16px;
-    max-width: 140px;
+    /* no width cap — brand takes the space it needs */
   }
   .brand-name small {
     font-size: 7px;
@@ -1662,16 +1659,6 @@ h2 em {
   .nav-shield {
     height: 36px;
     width: 36px;
-  }
-  .desktop-nav {
-    gap: 16px;
-    font-size: 11px;
-    flex-wrap: wrap;
-  }
-  .nav-cta {
-    height: 38px;
-    padding: 0 16px;
-    font-size: 10px;
   }
 }
 
@@ -1791,7 +1778,7 @@ h2 em {
   .scene-logo,
   .scene-fallback img {
     left: 50%;
-    width: min(65%, 270px);
+    width: min(50%, 200px);
   }
   .scene-caption {
     display: none;
