@@ -16,11 +16,12 @@ describe("Church information", () => {
 });
 
 describe("Services schedule", () => {
-  it("matches the Sunday card to the shared service time and location", () => {
+  it("matches the Sunday card to the shared service window and location", () => {
     const sunday = services.find((s) => s.name === "Sunday Worship Service");
-    expect(sunday?.time).toBe(church.sundayService);
+    expect(sunday?.time).toBe("8:30 AM – 12:00 PM");
+    expect(sunday?.time.startsWith(church.sundayService)).toBe(true);
     expect(sunday?.location).toBe(church.location);
-    expect(sunday?.calendar).toBeTruthy();
+    expect(sunday?.calendar).toContain("20261122T120000Z");
   });
   it("offers four weekly gatherings", () => expect(services).toHaveLength(4));
   it("lists the mid-week rhythm: Tuesday class, Wednesday online study, Friday miracle hour", () => {

@@ -43,13 +43,13 @@ export const services: ServiceCard[] = [
   {
     name: "Sunday Worship Service",
     day: "Every Sunday",
-    time: church.sundayService,
+    time: "8:30 AM – 12:00 PM",
     location: church.location,
     description: "Our main family gathering — worship, the Word, and fellowship.",
     calendar: gcal(
       "Pleasant+Springs+Chapel+%E2%80%94+Sunday+Worship",
       "20261122T083000Z",
-      "20261122T103000Z",
+      "20261122T120000Z",
       "SU",
     ),
     directions: church.directions,
