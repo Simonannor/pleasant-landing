@@ -14,6 +14,7 @@ import MinistrySection from "@/components/MinistrySection";
 import VisitSection from "@/components/VisitSection";
 import LeadershipSection from "@/components/LeadershipSection";
 import SiteFooter from "@/components/SiteFooter";
+import ThemeBand from "@/components/ThemeBand";
 import GalleryTeaser from "@/components/GalleryTeaser";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
 const SacredScene = lazy(() => import("@/components/SacredScene"));
@@ -215,6 +216,7 @@ function Index() {
             <div className="scene-caption">Rooted in Christ. Open to you.</div>
           </section>
         </div>
+        <ThemeBand />
         <ServicesSection />
         <div className="container">
           <WelcomeSection />

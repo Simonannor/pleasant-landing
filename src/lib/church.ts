@@ -5,6 +5,8 @@ export const church = {
   location: "Achimota Mile 7, Accra, Ghana",
   venue: "On the premises of Kaspong Ltd.",
   ministry: "The Father’s Heart School of Ministry",
+  theme: "Season of Multiple Fruitfulness",
+  themeYear: "2026",
   directions:
     "https://www.google.com/maps/search/?api=1&query=Pleasant+Springs+Chapel+Achimota+Mile+7+Accra+Ghana",
 };
@@ -100,30 +102,29 @@ export type Leader = {
 };
 
 // Portraits are placeholders — they will be added when the photos arrive.
-// The bios below are drafted role descriptions; refine them freely.
 export const leaders: Leader[] = [
   {
     name: "Rev. Dr. Michael Armah",
     role: "HEAD PASTOR",
-    bio: "Shepherds Pleasant Springs Chapel with a heart for sound teaching and fervent prayer, leading the church to please God and serve its generation — seeing every member rooted in faith, flourishing in family, and living with purpose.",
+    bio: "Meet Rev. Dr. Michael Armah — the set man over Pleasant Springs Chapel, anointed by God to lead this house with the Word, prayer, and a father’s heart. His calling is simple and unshakable: to please God and serve our generation, raising a people of faith, family, and purpose.",
     photo: null,
   },
   {
     name: "Pastor Emmanuel Sarpong",
     role: "ASSOCIATE PASTOR",
-    bio: "Serves alongside the head pastor with a passion for discipleship and the practical care of God’s people, helping members grow from their first steps of faith into mature, serving disciples.",
+    bio: "Meet Pastor Emmanuel Sarpong — a faithful disciple-builder, anointed to walk with believers from their first step of faith into a life of mature, joyful service. His heart beats for the practical care of God’s people.",
     photo: null,
   },
   {
     name: "Pastor Michael Ayer",
     role: "ASSOCIATE PASTOR",
-    bio: "Carries a deep love for worship and the Word, encouraging the congregation to pursue God’s presence daily and to build homes that honour Christ.",
+    bio: "Meet Pastor Michael Ayer — a worshipper and teacher of the Word, anointed to draw the congregation into God’s presence and to build homes that honour Christ, one family at a time.",
     photo: null,
   },
   {
     name: "Pastor Anthony Dotse",
     role: "ASSOCIATE PASTOR",
-    bio: "Serves the house with diligence and joy, supporting the ministries and members of the chapel and pointing every generation to Jesus.",
+    bio: "Meet Pastor Anthony Dotse — a diligent and joyful servant of the house, anointed to strengthen the ministries of the chapel and to point every generation, young and old, to Jesus.",
     photo: null,
   },
 ];

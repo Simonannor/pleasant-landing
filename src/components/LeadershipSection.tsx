@@ -1,4 +1,4 @@
-import { leaders } from "@/lib/church";
+import { church, leaders } from "@/lib/church";
 import shield from "@/assets/chapel-shield.png";
 
 export default function LeadershipSection() {
@@ -13,8 +13,9 @@ export default function LeadershipSection() {
             <em>pastors.</em>
           </h2>
           <p className="leadership-copy">
-            Shepherds after God’s own heart — leading Pleasant Springs Chapel with humility, prayer,
-            and a love for family.
+            Shepherds after God’s own heart — leading {church.name} with humility, prayer, and a
+            love for family. In this {church.theme.toLowerCase()}, they labor to see every member
+            fruitful in faith, family, and purpose.
           </p>
         </div>
         <div className="leadership-grid">
@@ -36,9 +37,7 @@ export default function LeadershipSection() {
               </div>
               <h3 className="leader-name">{leader.name || "To be announced"}</h3>
               <div className="leader-role">{leader.role}</div>
-              <p className="leader-bio">
-                {leader.bio || "Serving the house with a heart for God, family, and people."}
-              </p>
+              <p className="leader-bio">{leader.bio || "A faithful servant of God’s house."}</p>
             </article>
           ))}
         </div>

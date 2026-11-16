@@ -9,6 +9,8 @@ describe("Church information", () => {
     expect(church.venue).toBe("On the premises of Kaspong Ltd."));
   it("preserves the church mission", () =>
     expect(church.mission).toBe("Pleasing God, Serving Our Generation."));
+  it("carries the theme of the year", () =>
+    expect(church.theme).toBe("Season of Multiple Fruitfulness"));
   it("identifies the ministry school", () =>
     expect(church.ministry).toBe("The Father’s Heart School of Ministry"));
 });

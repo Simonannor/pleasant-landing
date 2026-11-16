@@ -512,6 +512,53 @@ h1 em {
   display: flex;
   justify-content: center;
 }
+/* Theme of the year — gold declaration band */
+.theme-band {
+  padding: 76px 0 82px;
+  border-top: 1px solid var(--border);
+  background:
+    radial-gradient(90% 130% at 50% 0%, rgba(216, 182, 101, 0.08), transparent 62%),
+    var(--background);
+  text-align: center;
+}
+.theme-eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.theme-eyebrow::before,
+.theme-eyebrow::after {
+  content: "";
+  height: 1px;
+  width: 27px;
+  background: currentColor;
+}
+.theme-text {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 6vw, 64px);
+  line-height: 1.08;
+  color: var(--foreground);
+  margin: 16px 0 0;
+}
+.theme-text em {
+  font-style: italic;
+  background: linear-gradient(100deg, var(--primary) 20%, #f4e6b0 40%, var(--primary) 60%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+.theme-sub {
+  margin: 18px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  color: var(--muted-foreground);
+}
 .text-link {
   font-size: 11px;
   display: inline-flex;
