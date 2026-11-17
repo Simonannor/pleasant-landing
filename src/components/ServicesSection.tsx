@@ -5,9 +5,9 @@ import { church, services } from "@/lib/church";
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="services reveal" data-reveal="fade-up">
+    <section id="services" className="services" aria-labelledby="services-title">
       <div className="container">
-        <div className="services-head reveal" data-reveal="slide-left" data-delay="100">
+        <div className="services-head">
           <div className="eyebrow">Worship with us</div>
           <h2 id="services-title">
             A rhythm of grace.
@@ -16,14 +16,8 @@ export default function ServicesSection() {
           </h2>
         </div>
         <div className="services-grid">
-          {services.map((s, i) => (
-            <article
-              className="service-card reveal lift-card"
-              data-reveal="zoom"
-              data-parallax="0.25"
-              data-delay={i * 120}
-              key={s.name}
-            >
+          {services.map((s) => (
+            <article className="service-card reveal" data-delay="0" key={s.name}>
               <span className="service-pill">{s.day}</span>
               <h3 className="service-name">{s.name}</h3>
               <div className="service-time">{s.time}</div>
@@ -66,8 +60,8 @@ export default function ServicesSection() {
             </article>
           ))}
         </div>
-        <div className="services-cta reveal" data-reveal="fade-up" data-delay="500">
-          <Button variant="chapel" asChild className="magnetic">
+        <div className="services-cta reveal" data-delay="120">
+          <Button variant="chapel" asChild>
             <Link to="/visit">
               Plan your visit <ArrowUpRight />
             </Link>

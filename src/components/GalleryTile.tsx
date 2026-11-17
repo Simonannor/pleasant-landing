@@ -18,7 +18,7 @@ export default function GalleryTile({
     <figure className={`tile ${span ?? shot.span ?? ""}`}>
       <button
         type="button"
-        className="tile-btn lift-card"
+        className="tile-btn"
         onClick={onOpen}
         aria-label={`View ${shot.alt}`}
         onMouseEnter={() => {

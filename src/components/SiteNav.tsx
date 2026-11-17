@@ -56,12 +56,12 @@ export default function SiteNav() {
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navLinks.filter((l) => l.label !== "Services").map((l) => (
-            <Link key={l.href} className="nav-link magnetic" to={l.href}>
+            <Link key={l.href} className="nav-link" to={l.href}>
               {l.label}
             </Link>
           ))}
           <Button
-            className="mobile-menu-toggle magnetic"
+            className="mobile-menu-toggle"
             variant="chapelIcon"
             size="icon"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -70,7 +70,7 @@ export default function SiteNav() {
           >
             {open ? <X /> : <Menu />}
           </Button>
-          <Button variant="chapel" asChild className="nav-cta magnetic">
+          <Button variant="chapel" asChild className="nav-cta">
             <Link to="/visit">
               Plan your visit <ArrowUpRight />
             </Link>

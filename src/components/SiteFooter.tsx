@@ -29,10 +29,10 @@ const SOCIAL_ICONS: Record<string, ComponentType<{ size?: number }>> = {
 
 export default function SiteFooter() {
   return (
-    <footer className="site-footer reveal" data-reveal="fade-up" aria-label="Footer">
+    <footer className="site-footer" aria-label="Footer">
       <div className="container">
         <div className="footer-grid">
-          <div className="footer-brand reveal" data-reveal="slide-left" data-delay="100">
+          <div className="footer-brand">
             <img src={shield} alt={`${church.name} shield emblem`} width={72} height={72} />
             <div className="footer-name">{church.name}</div>
             <p className="footer-mission">{church.mission}</p>
@@ -55,7 +55,7 @@ export default function SiteFooter() {
               })}
             </div>
           </div>
-          <div className="footer-col reveal" data-reveal="fade-up" data-delay="200">
+          <div className="footer-col">
             <div className="footer-heading">Explore</div>
             {navLinks.map((l) => (
               <Link key={l.href} className="footer-link" to={l.href}>
@@ -66,7 +66,7 @@ export default function SiteFooter() {
               Plan your visit
             </Link>
           </div>
-          <div className="footer-col reveal" data-reveal="fade-up" data-delay="300">
+          <div className="footer-col">
             <div className="footer-heading">Gather with us</div>
             {services.map((s) => (
               <div className="footer-service" key={s.name}>
@@ -77,7 +77,7 @@ export default function SiteFooter() {
               </div>
             ))}
           </div>
-          <div className="footer-col reveal" data-reveal="fade-up" data-delay="400">
+          <div className="footer-col">
             <div className="footer-heading">Visit</div>
             <p className="footer-visit">
               <MapPin size={12} aria-hidden="true" />
@@ -100,7 +100,7 @@ export default function SiteFooter() {
             </a>
           </div>
         </div>
-        <div className="footer-bottom reveal" data-reveal="fade-up" data-delay="500">
+        <div className="footer-bottom">
           <span>© 2026 {church.name}. All rights reserved.</span>
           <span>Achimota Mile 7 · Accra, Ghana</span>
           <span>Built on faith. Bound by love.</span>
