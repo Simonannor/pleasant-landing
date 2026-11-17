@@ -17,9 +17,9 @@ export default function GalleryTeaser() {
   };
 
   return (
-    <section id="gallery" className="gallery" aria-labelledby="gallery-title">
+    <section id="gallery" className="gallery reveal" data-reveal="fade-up" aria-labelledby="gallery-title">
       <div className="container">
-        <div className="gallery-head reveal">
+        <div className="gallery-head reveal" data-reveal="slide-left" data-delay="100">
           <div>
             <div className="eyebrow">Church life</div>
             <h2 id="gallery-title">
@@ -28,14 +28,14 @@ export default function GalleryTeaser() {
               <em>make us family.</em>
             </h2>
           </div>
-          <Button variant="chapel" asChild>
+          <Button variant="chapel" asChild className="magnetic reveal" data-reveal="zoom" data-delay="250">
             <Link to="/gallery">
               See gallery <ArrowUpRight />
             </Link>
           </Button>
         </div>
-        <div className="bento">
-          {featuredShots.map((shot) => (
+        <div className="bento reveal" data-stagger data-reveal="zoom" data-delay="400">
+          {featuredShots.map((shot, i) => (
             <GalleryTile
               key={shot.src}
               shot={shot}
